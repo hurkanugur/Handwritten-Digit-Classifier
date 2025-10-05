@@ -7,17 +7,31 @@ class MNISTClassificationModel(nn.Module):
         super().__init__()
 
         self.net = nn.Sequential(
-            nn.Flatten(),               # Converts input tensor to 1D tensor (e.g., 1x28x28 -> 784)
-
-            nn.Linear(input_dim, 512),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-
-            nn.Linear(512, 256),
-            nn.ReLU(),
-            nn.Dropout(0.1),
-
-            nn.Linear(256, 10)           # Output layer for 10 classes (MNIST)
+            # Conv Block 1:
+            nn.Sequential(
+                nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=1, padding_mode="reflect"),
+                nn.BatchNorm2d(32),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=2, stride=2),
+                nn.Dropout(0.25)
+            ),
+            # Conv Block 2:
+            nn.Sequential(
+                nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1, padding_mode="reflect"),
+                nn.BatchNorm2d(64),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=2, stride=2),
+                nn.Dropout(0.25)
+            ),
+            # Fully Connected:
+            nn.Sequential(
+                nn.Flatten(),
+                nn.Linear(64 * 7 * 7, 128),
+                nn.ReLU(),
+                nn.BatchNorm1d(128),
+                nn.Dropout(0.5),
+                nn.Linear(128, 10)
+            )
         )
 
         self.net.apply(self.init_weights)
