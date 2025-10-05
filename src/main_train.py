@@ -3,6 +3,7 @@ from torch import nn
 from dataset import MNISTDataset
 from model import MNISTClassificationModel
 from visualize import LossMonitor
+from device_manager import DeviceManager
 import torch.nn.functional as F
 import config
 
@@ -81,9 +82,9 @@ def test_model(model, test_loader, device):
 
 def main():
 
-    # Select CPU or GPU
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"• Selected device: {device}") 
+    # Select CUDA (GPU) / MPS (Mac) / CPU
+    device_manager = DeviceManager()
+    device = device_manager.device
 
     # Load and prepare data
     dataset = MNISTDataset()
@@ -109,6 +110,9 @@ def main():
 
     # Keep the final plot displayed
     loss_monitor.close()
+
+    # Release the memory
+    device_manager.release_memory()
 
 if __name__ == "__main__":
     main()
