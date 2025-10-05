@@ -1,12 +1,12 @@
 # 📚 Handwritten Digit Classifier
 
 ## 📖 Overview
-This project predicts **handwritten digit classes (0-9)** using the **MNIST dataset** and a neural network built with **PyTorch**.  
+This project predicts **handwritten digit classes (0–9)** using the **MNIST dataset** and a convolutional neural network (**CNN**) built with **PyTorch**.  
 It demonstrates a full machine learning pipeline from data loading to inference, including:
 
-- 🧠 **Neural Network** with multiple hidden layers using **LeakyReLU** activation function and **Dropout**  
-- ⚖️ **Cross-Entropy Loss** for multi-class classification
-- 🚀 **Adam optimizer** for gradient updates 
+- 🧠 **CNN** with stacked convolutional layers, **Batch Normalization**, **Max Pooling**, **LeakyReLU** activation, and **Dropout**  
+- ⚖️ **Cross-Entropy Loss** for multi-class classification  
+- 🚀 **Adam optimizer** for gradient updates  
 - 🔀 **Mini-batch training** with `DataLoader`  
 - 📊 **Train/Validation/Test split** for robust evaluation  
 - 📈 **Live training & validation loss monitoring**  
@@ -89,9 +89,30 @@ requirements.txt                      # Python dependencies
 ## 📂 Model Architecture
 
 ```bash
-Input (28x28)  → Flatten  → Linear(512)  → ReLU  → Dropout(0.2)
-                          → Linear(256)  → ReLU  → Dropout(0.1)
-                          → Linear(10)   → Softmax(Output)
+Input (1×28×28)
+
+Conv Block 1:
+  → Conv2d(in_channels=1, out_channels=32, kernel_size=3, stride=1, padding=1, padding_mode="reflect")
+  → BatchNorm2d(32)
+  → ReLU
+  → MaxPool2d(kernel_size=2, stride=2)
+  → Dropout(0.25)
+
+Conv Block 2:
+  → Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1, padding_mode="reflect")
+  → BatchNorm2d(64)
+  → ReLU
+  → MaxPool2d(kernel_size=2, stride=2)
+  → Dropout(0.25)
+
+Fully Connected:
+  → Flatten
+  → Linear(64×7×7, 128)
+  → ReLU
+  → BatchNorm1d(128)
+  → Dropout(0.5)
+  → Linear(128, 10)
+  → Softmax(Output)
 ```
 
 ---

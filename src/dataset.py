@@ -52,7 +52,7 @@ class MNISTDataset:
         """Prepare image tensor for inference with color inversion."""
         
         # Apply inference transformations (resize, grayscale, normalize...)
-        X = self.inference_transform(image).unsqueeze(0)
+        X = self.inference_transform(image)
         
         # Add batch dimension (from [1, 28, 28] to [1, 1, 28, 28])
         X = X.unsqueeze(0)

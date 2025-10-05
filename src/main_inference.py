@@ -57,12 +57,12 @@ def main():
         print(f"• Image: {os.path.basename(image_path)}")
         print(f"• Predicted Class: {predicted_class_index.item()} (Probability: {probability.item():.4f})")
 
-        # -------------------------
-        # Release the memory
-        # -------------------------
-        print("-------------------------------------")
-        device_manager.release_memory()
-        print("-------------------------------------")
+    # -------------------------
+    # Release the memory
+    # -------------------------
+    print("-------------------------------------")
+    device_manager.release_memory()
+    print("-------------------------------------")
 
 if __name__ == "__main__":
     main()
