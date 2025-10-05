@@ -3,16 +3,17 @@ import config
 import torch.nn.functional as F
 from dataset import MNISTDataset
 from PIL import Image
+from device_manager import DeviceManager
 from model import MNISTClassificationModel
 import os
 
 def main():
     # -------------------------
-    # Select device
+    # Select CUDA (GPU) / MPS (Mac) / CPU
     # -------------------------
     print("-------------------------------------")
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"• Selected device: {device}")
+    device_manager = DeviceManager()
+    device = device_manager.device
 
     # -------------------------
     # Load dataset normalization params and categorical mappings
@@ -55,6 +56,12 @@ def main():
         # -------------------------
         print(f"• Image: {os.path.basename(image_path)}")
         print(f"• Predicted Class: {predicted_class_index.item()} (Probability: {probability.item():.4f})")
+        print("-------------------------------------")
+        # -------------------------
+        # Release the memory
+        # -------------------------
+        device_manager.release_memory()
+    
         print("-------------------------------------")
 
 if __name__ == "__main__":
