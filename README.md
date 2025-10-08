@@ -1,4 +1,4 @@
-# 📚 Handwritten Digit Classifier
+# 📚 MNIST Handwritten Digit Classifier
 
 ## 📖 Overview
 This project predicts **handwritten digit classes (0–9)** using the **MNIST dataset** and a convolutional neural network (**CNN**) built with **PyTorch**.  
@@ -33,12 +33,12 @@ It demonstrates a full machine learning pipeline from data loading to inference,
 
 - Clone the repository
 ```bash
-git clone https://github.com/hurkanugur/Handwritten-Digit-Classifier.git
+git clone https://github.com/hurkanugur/MNIST-Digit-Classifier.git
 ```
 
-- Navigate to the `Handwritten-Digit-Classifier` directory
+- Navigate to the `MNIST-Digit-Classifier` directory
 ```bash
-cd Handwritten-Digit-Classifier
+cd MNIST-Digit-Classifier
 ```
 
 - Install dependencies
@@ -46,7 +46,7 @@ cd Handwritten-Digit-Classifier
 pip install -r requirements.txt
 ```
 
-- Navigate to the `Handwritten-Digit-Classifier/src` directory
+- Navigate to the `MNIST-Digit-Classifier/src` directory
 ```bash
 cd src
 ```
