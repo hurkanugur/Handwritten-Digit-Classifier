@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from tqdm import tqdm
 from dataset import MNISTDataset
 from model import MNISTClassificationModel
 from visualize import LossMonitor
@@ -10,13 +11,15 @@ import config
 def train_model(model, train_loader, val_loader, optimizer, loss_fn, device, loss_monitor):
     """Train a PyTorch model with optional validation and live loss monitoring."""
 
+    print("• Training the model:")
+
     for epoch in range(1, config.NUM_EPOCHS + 1):
         # -------------------------
         # Training Step
         # -------------------------
         model.train()
         train_loss = 0.0
-        for X_batch, y_batch in train_loader:
+        for X_batch, y_batch in tqdm(train_loader):
             X_batch, y_batch = X_batch.to(device), y_batch.to(device)
             optimizer.zero_grad()
             outputs = model(X_batch)
@@ -56,6 +59,8 @@ def train_model(model, train_loader, val_loader, optimizer, loss_fn, device, los
 
 def test_model(model, test_loader, device):
     """Evaluate a trained model on the test dataset."""
+
+    print("• Testing the model:")
     
     model.eval()
     correct_predictions = 0
@@ -63,7 +68,7 @@ def test_model(model, test_loader, device):
 
     with torch.no_grad():
         # Iterate through the test data
-        for X_batch, y_batch in test_loader:
+        for X_batch, y_batch in tqdm(test_loader):
             X_batch, y_batch = X_batch.to(device), y_batch.to(device)
 
             outputs = model(X_batch)
