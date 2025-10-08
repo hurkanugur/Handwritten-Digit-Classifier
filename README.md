@@ -1,8 +1,7 @@
 # 📚 MNIST Handwritten Digit Classifier
 
 ## 📖 Overview
-This project predicts **handwritten digit classes (0–9)** using the **MNIST dataset** and a convolutional neural network (**CNN**) built with **PyTorch**.  
-It demonstrates a full machine learning pipeline from data loading to inference, including:
+This project predicts **handwritten digit classes (0–9)** using the **MNIST dataset** and a convolutional neural network (**CNN**) built with **PyTorch**. It demonstrates a full machine learning pipeline from data loading to inference, including:
 
 - 🧠 **CNN** with stacked convolutional layers, **Batch Normalization**, **Max Pooling**, **LeakyReLU** activation, and **Dropout**  
 - ⚖️ **Cross-Entropy Loss** for multi-class classification  
@@ -11,6 +10,15 @@ It demonstrates a full machine learning pipeline from data loading to inference,
 - 📊 **Train/Validation/Test split** for robust evaluation  
 - 📈 **Live training & validation loss monitoring**  
 - ✅ **Softmax activation** on the output for probability distribution across 10 classes
+- 🎨 **Interactive Gradio Interface** for real-time image classification visualization
+
+---
+
+## 🖼️ Application Screenshot
+
+Below is a preview of the **Gradio Interface** used for real-time tire classification:
+
+![Application Screenshot](assets/app_screenshot.png)
 
 ---
 
@@ -19,6 +27,7 @@ It demonstrates a full machine learning pipeline from data loading to inference,
 - **pandas** – data handling  
 - **matplotlib** – loss visualization  
 - **pickle** – saving/loading normalization params and trained model
+- **Gradio** — interactive web interface for real-time model demos 
 
 ---
 
@@ -65,9 +74,12 @@ cd src
 ## 📂 Project Structure
 
 ```bash
+assets/
+└── app_screenshot.png                # Screenshot of the application
+└── 1, 2, 3 ... 9.png                 # Digit samples
+
 data/
 └── MNIST                             # MNIST dataset (raw greyscale images and labels)
-└── test_data                         # Sample images for inference
 
 model/
 └── mnist_digit_classifier.pth        # Trained model (after training)
