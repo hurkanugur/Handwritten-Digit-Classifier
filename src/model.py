@@ -1,9 +1,9 @@
 import torch
 from torch import nn
-import config
+from src import config
 
 class MNISTClassificationModel(nn.Module):
-    def __init__(self, input_dim, device):
+    def __init__(self, device):
         super().__init__()
 
         self.net = nn.Sequential(
