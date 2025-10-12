@@ -1,9 +1,9 @@
 # -------------------------
 # Paths
 # -------------------------
-MODEL_PATH = "../model/mnist_digit_classifier.pth"
-DATASET_PATH = "../data/"
-TEST_DATA_FOLDER_PATH = "../data/test_data"
+MODEL_PATH = "model/mnist_digit_classifier.pth"
+DATASET_PATH = "data/"
+TEST_DATA_FOLDER_PATH = "data/test_data"
 
 # -------------------------
 # MNIST mean and std values

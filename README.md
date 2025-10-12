@@ -54,10 +54,6 @@ cd MNIST-Digit-Classifier
 ```bash
 pip install -r requirements.txt
 ```
-
-- Navigate to the `MNIST-Digit-Classifier/src` directory
-```bash
-cd src
 ```
 
 ---
@@ -75,23 +71,27 @@ cd src
 
 ```bash
 assets/
-└── app_screenshot.png                # Screenshot of the application
+├── app_screenshot.png                # Screenshot of the application
 └── 1, 2, 3 ... 9.png                 # Digit samples
 
 data/
-└── MNIST                             # MNIST dataset (raw greyscale images and labels)
+└── MNIST                             # MNIST dataset
 
 model/
-└── mnist_digit_classifier.pth        # Trained model (after training)
+└── mnist_digit_classifier.pth        # Trained model
 
 src/
 ├── config.py                         # Paths, hyperparameters, split ratios
 ├── dataset.py                        # Data loading & preprocessing
 ├── device_manager.py                 # Selects and manages compute device
-├── main_train.py                     # Training & model saving
-├── main_inference.py                 # Inference pipeline
+├── train.py                          # Training pipeline
+├── inference.py                      # Inference pipeline
 ├── model.py                          # Neural network definition
-├── visualize.py                      # Training/validation plots
+└── visualize.py                      # Training/validation plots
+
+main/
+├── main_train.py                     # Entry point for training
+└── main_inference.py                 # Entry point for inference
 
 requirements.txt                      # Python dependencies
 ```
@@ -130,21 +130,33 @@ Fully Connected:
 ---
 
 ## 📂 Train the Model
+Navigate to the project directory:
 ```bash
-python main_train.py
+cd MNIST-Digit-Classifier
+```
+
+Run the training script:
+```bash
+python -m main.main_train
 ```
 or
 ```bash
-python3 main_train.py
+python3 -m main.main_train
 ```
 
 ---
 
-## 📂 Run Predictions on Real Data
+## 📂 Run Inference / Make Predictions
+Navigate to the project directory:
 ```bash
-python main_inference.py
+cd MNIST-Digit-Classifier
+```
+
+Run the app:
+```bash
+python -m main.main_inference
 ```
 or
 ```bash
-python3 main_inference.py
+python3 -m main.main_inference
 ```
